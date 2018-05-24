@@ -26,28 +26,36 @@
                        <h:commandButton value="Places" action="places" style="position: absolute; top: 250px; left: 900px; width: 180px; height: 40px; opacity: 0.8; background-color: window" />
                         <h:commandButton value="About" action="about" style="position: absolute; top: 250px; left: 1200px; width: 180px; height: 40px; opacity: 0.8; background-color: window" />
                         
-                        <h:selectOneMenu style="position: absolute; top: 500px; left: 310px; width: 150px; height: 40px" value="#{manager.tg}">
-                            <f:selectItems value="#{manager.tags}"/>
+                        <h:selectOneMenu style="position: absolute; top: 500px; left: 310px; width: 150px; height: 40px" value="#{tgbean.tag}">
+                            <f:selectItems value="#{manager.tags()}" var="manager" itemValue="#{manager.tg}" itemLabel="#{manager.tg}"/>
                             </h:selectOneMenu>
-                        <h:commandLink value="Add" action="tags" actionListener="#{manager.addSelectedt()}" style="position: absolute; top: 760px; left: 310px"></h:commandLink>
+                        
+                        <h:commandButton value="Add" action="#{tgbean.addtoList()}" style="position: absolute; top: 760px; left: 310px"></h:commandButton>
+                        <f:param name="tag" value="#{tgbean.tag}"> </f:param>  
+                        
+                        <h:commandButton value="Show" action="selectag" style="position: absolute; top: 760px; left: 610px"></h:commandButton>
                         
                         
-                    <!--    <ul style="position: absolute; top: 700px; left: 310px;">
-                            <ui:repeat value="#{manager.selectedt}" var="tag">
+                    <!--   <ul style="position: absolute; top: 700px; left: 510px;">
+                        
+                            <ui:repeat value="#{manager.selectedt}" var="lust">
                                 <li>
-                                    <h:outputText value="#{manager.selectedt}"></h:outputText>
+                                        <h:outputText value="#{manager.setTg(tg)}"></h:outputText>
                                 </li>
                             </ui:repeat>
-                        </ul>  -->
+                        
+                        </ul>  
+                   --> 
                     
-                    <h:dataTable value="#{manager.getSelectedt()}" var="list" border="1" cellpadding="2" cellspacing="2" style="position: absolute; top: 500px; left: 610px">
+               <!--      <h:dataTable value="#{manager.getSelectedt()}" var="list" border="1" cellpadding="2" cellspacing="2" style="position: absolute; top: 500px; left: 610px">
                         <h:column>
                              <f:facet name="header"> #</f:facet>
                              <h:outputText value="#{manager.selectedt}"></h:outputText>
                         </h:column>
-                           
-                    </h:dataTable>
-                        
+               
+                        </h:dataTable>
+                -->     
+               
                 </h:form>
                     
                     </f:view>
