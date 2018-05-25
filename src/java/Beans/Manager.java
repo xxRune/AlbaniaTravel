@@ -128,6 +128,16 @@ public class Manager {
         }
         
     }
+        
+        public List<String> search(String name) throws ClassNotFoundException{
+            List<String> arr = new ArrayList<String>();
+            for(Manager m : tags())
+                if(m.getTg().toLowerCase().startsWith(name.toLowerCase()))
+                    arr.add(m.getTg());
+                return arr;
+            
+                
+        }
     
         
 }
