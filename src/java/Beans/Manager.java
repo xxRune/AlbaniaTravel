@@ -28,6 +28,7 @@ public class Manager {
     private String str="";
   
     private String tg;
+    private String catg;
 
    
     
@@ -65,6 +66,20 @@ public class Manager {
     public void setTg(String tg) {
         this.tg = tg;
     }
+
+    /**
+     * @return the catg
+     */
+    public String getCatg() {
+        return catg;
+    }
+
+    /**
+     * @param catg the catg to set
+     */
+    public void setCatg(String catg) {
+        this.catg = catg;
+    }
     
      public void setSelectedt(List<String> selectedt) {
         this.selectedt = selectedt;
@@ -86,8 +101,7 @@ public class Manager {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AlbaniaTravel","root","");
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(str);
-            //pstmt= conn.prepareStatement(str);
-            //rs=pstmt.executeQuery();
+            
             while(rs.next()){
                 Manager mmb = new Manager();
                 mmb.setTg(rs.getString("name"));
@@ -135,8 +149,29 @@ public class Manager {
                 if(m.getTg().toLowerCase().startsWith(name.toLowerCase()))
                     arr.add(m.getTg());
                 return arr;
-            
                 
+        }
+        
+        public List<String> checkcat() throws ClassNotFoundException{
+            
+            List<String> ar = new ArrayList<String>();
+            str="select name from categ";
+            
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AlbaniaTravel","root","");
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(str);
+            
+            while(rs.next()){
+                //Manager mmb = new Manager();
+                setCatg(rs.getString("name"));
+                ar.add(catg);
+            }
+            } catch (SQLException e) {
+                System.err.println("Smth went wrong"+e);
+            }
+            return ar;
         }
     
         

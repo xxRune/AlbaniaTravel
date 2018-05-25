@@ -11,7 +11,9 @@ import javax.faces.bean.ManagedBean;
 public class Tags implements Serializable{
     
     private static final long s = 100000000000000000L;
+    
     private String tag;
+    private String[] cat; 
     private List<String> stg = new ArrayList<>();
     
     public Tags(){
@@ -41,6 +43,20 @@ public class Tags implements Serializable{
      */
     public List<String> getStg() {
         return stg;
+    }
+
+    /**
+     * @return the cat
+     */
+    public String[] getCat() {
+        return cat;
+    }
+
+    /**
+     * @param cat the cat to set
+     */
+    public void setCat(String[] cat) {
+        this.cat = cat;
     }
 
     /**
