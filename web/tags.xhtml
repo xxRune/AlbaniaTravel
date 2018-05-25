@@ -28,7 +28,7 @@
                        <h:commandButton value="Places" action="places" style="position: absolute; top: 250px; left: 900px; width: 180px; height: 40px; opacity: 0.8; background-color: window" />
                         <h:commandButton value="About" action="about" style="position: absolute; top: 250px; left: 1200px; width: 180px; height: 40px; opacity: 0.8; background-color: window" />
                         
-                        <h:selectOneMenu style="position: absolute; top: 500px; left: 310px; width: 150px; height: 40px" value="#{tgbean.tag}">
+                        <h:selectOneMenu  value="#{tgbean.tag}" style="position: absolute; top: 500px; left: 310px; width: 150px; height: 40px">
                             <f:selectItems value="#{manager.tags()}" var="manager" itemValue="#{manager.tg}" itemLabel="#{manager.tg}"/>
                             </h:selectOneMenu>
                         
@@ -58,11 +58,17 @@
                         </h:dataTable>
                 -->     
                 
-                <h:panelGrid columns="2" cellpadding="5" style="position: absolute; top: 360px; left: 580px">
+                <h:panelGrid columns="2" cellpadding="5" style="position: absolute; top: 340px; left: 580px">
                     <p:outputLabel value="Search" for="searchName"></p:outputLabel>
                     <p:autoComplete id="searchName" value="#{searchController.searchName}" completeMethod="#{searchController.completeText}"/>
                 </h:panelGrid>
-               
+                
+                
+                <h:selectManyCheckbox value="#{tgbean.cat}" style="position: absolute; top: 550px; left: 1060px" layout="pageDirection">
+                    <f:selectItems value="#{manager.checkcat()}" />
+                </h:selectManyCheckbox>
+                
+                
                 </h:form>
                     
                     </f:view>
@@ -70,7 +76,8 @@
             </h2>
             
             <h1 style="position: absolute; color: window; font-size: 40px; top: 400px; left: 290px; opacity: 0.8;"> List of Tags  </h1>
-            <h1 style="position: absolute; color: window; font-size: 40px; top: 400px; left: 590px; opacity: 0.8;"> Selected Tags</h1>
+            <h1 style="position: absolute; color: window; font-size: 40px; top: 400px; left: 640px; opacity: 0.8;"> Selected Tags</h1>
+            <h1 style="position: absolute; color: window; font-size: 40px; top: 400px; left: 990px; opacity: 0.8;"> Choose Category</h1>
             
         </center>
         
