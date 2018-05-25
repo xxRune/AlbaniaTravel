@@ -14,7 +14,7 @@ public class Tags implements Serializable{
     
     private String tag;
     private String[] cat; 
-    private List<String> stg = new ArrayList<>();
+    static List<String> stg = new ArrayList<>();
     
     public Tags(){
         
@@ -41,7 +41,7 @@ public class Tags implements Serializable{
     /**
      * @return the stg
      */
-    public List<String> getStg() {
+    public static List<String> getStg() {
         return stg;
     }
 
@@ -62,13 +62,19 @@ public class Tags implements Serializable{
     /**
      * @param stg the stg to set
      */
-    public void setStg(List<String> stg) {
-        this.stg = stg;
+    public static void setStg(List<String> aStg) {
+        stg = aStg;
     }
     
-    public void addtoList(){
-        stg.add(getTag());
-        stg.add("one");
+    public String addtoList(String s){
+        stg.add(s);
+        return "/tags.xhtml";
     }
+    
+    public List<String> toaddT(){
+            List<String> td = new ArrayList<String>();
+            td.addAll(stg);
+            return td;
+        }
     
 }

@@ -33,6 +33,7 @@ public class Manager {
    
     
     List<String> selectedt = new ArrayList<>();
+    private static List<String> procc = new ArrayList<String>();
  
     public Manager(String tg){
         this.tg=tg;
@@ -45,13 +46,27 @@ public class Manager {
     @PostConstruct
     public void init(){
         selectedt= new ArrayList<>();
-
     }
     */
-    
-     public List<String> getSelectedt() {
-        return selectedt;
+
+    public static void addProcc(String s){
+        procc.add(s);
     }
+    
+    /**
+     * @return the procc
+     */
+    public static List<String> getProcc() {
+        return procc;
+    }
+
+    /**
+     * @param aProcc the procc to set
+     */
+    public static void setProcc(List<String> aProcc) {
+        procc = aProcc;
+    }
+   
 
     /**
      * @return the tg
@@ -79,6 +94,10 @@ public class Manager {
      */
     public void setCatg(String catg) {
         this.catg = catg;
+    }
+    
+     public List<String> getSelectedt() {
+        return selectedt;
     }
     
      public void setSelectedt(List<String> selectedt) {
@@ -164,7 +183,7 @@ public class Manager {
             ResultSet rs = stm.executeQuery(str);
             
             while(rs.next()){
-                //Manager mmb = new Manager();
+                
                 setCatg(rs.getString("name"));
                 ar.add(catg);
             }
@@ -174,5 +193,10 @@ public class Manager {
             return ar;
         }
     
+        public List<String> toaddT(){
+            List<String> td = new ArrayList<String>();
+            td.addAll(procc);
+            return td;
+        }
         
 }

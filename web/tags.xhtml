@@ -32,31 +32,19 @@
                             <f:selectItems value="#{manager.tags()}" var="manager" itemValue="#{manager.tg}" itemLabel="#{manager.tg}"/>
                             </h:selectOneMenu>
                         
-                        <h:commandButton value="Add" action="#{tgbean.addtoList()}" style="position: absolute; top: 760px; left: 310px"></h:commandButton>
+                        <h:commandButton value="Add" action="#{tgbean.addtoList(s)}" style="position: absolute; top: 760px; left: 310px"></h:commandButton>
                         <f:param name="tag" value="#{tgbean.tag}"> </f:param>  
                         
-                        <h:commandButton value="Show" action="selectag" style="position: absolute; top: 760px; left: 610px"></h:commandButton>
-                        
-                        
-                    <!--   <ul style="position: absolute; top: 700px; left: 510px;">
-                        
-                            <ui:repeat value="#{manager.selectedt}" var="lust">
-                                <li>
-                                        <h:outputText value="#{manager.setTg(tg)}"></h:outputText>
-                                </li>
-                            </ui:repeat>
-                        
-                        </ul>  
-                   --> 
+                       
                     
-               <!--      <h:dataTable value="#{manager.getSelectedt()}" var="list" border="1" cellpadding="2" cellspacing="2" style="position: absolute; top: 500px; left: 610px">
+                   <!--   -->  <h:dataTable value="#{tgbean.toaddT()}" var="list" border="1" cellpadding="2" cellspacing="2" style="position: absolute; top: 500px; left: 610px">
                         <h:column>
                              <f:facet name="header"> #</f:facet>
-                             <h:outputText value="#{manager.selectedt}"></h:outputText>
+                             <h:outputText value="#{tgbean}" ></h:outputText>
                         </h:column>
                
                         </h:dataTable>
-                -->     
+                    
                 
                 <h:panelGrid columns="2" cellpadding="5" style="position: absolute; top: 340px; left: 580px">
                     <p:outputLabel value="Search" for="searchName"></p:outputLabel>
