@@ -3,8 +3,9 @@ package Beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import javax.annotation.PostConstruct;
+import java.util.Set;
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name="tgbean")
@@ -68,6 +69,13 @@ public class Tags implements Serializable{
     
     public String addtoList(String s){
         stg.add(s);
+        
+        //to remove duplicates
+        Set<String> hs = new HashSet<>();
+        hs.addAll(stg);
+        stg.clear();
+        stg.addAll(hs);
+        
         return "/tags.xhtml";
     }
     
@@ -76,5 +84,10 @@ public class Tags implements Serializable{
             td.addAll(stg);
             return td;
         }
+    
+    public String delAll(){
+        stg.clear();
+        return "/tags.xhtml";
+    }
     
 }
