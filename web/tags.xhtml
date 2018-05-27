@@ -35,8 +35,9 @@
                             <f:selectItems value="#{manager.tags()}" var="manager" itemValue="#{manager.tg}" itemLabel="#{manager.tg}"/>
                             </h:selectOneMenu>
                         
-                        <h:commandButton value="Add" action="#{tgbean.addtoList(s)}" style="position: absolute; top: 760px; left: 310px"></h:commandButton>
-                        <f:param name="tag" value="#{tgbean.tag}"> </f:param>
+                        <h:commandButton value="Add" action="#{tgbean.addtoList(s)}" style="position: absolute; top: 760px; left: 310px">
+                       <!--   <f:param name="tag" value="#{tgbean.tag}"> </f:param> -->
+                        </h:commandButton>
                         
                         <h:commandButton value="Delete All" action="#{tgbean.delAll()}" style="position: absolute; top: 760px; left: 380px">
                             </h:commandButton>
