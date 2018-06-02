@@ -8,20 +8,22 @@
       
     <h:head>
         <title>Tags</title>
-       <!-- <link rel="stylesheet" href="resources/style.css" type="text/css" ></link> -->
+      
         <style>
             .bckg{
                 background-image: url("resources/beach-scenery-albania.jpg");
             }
         </style>
+        
     </h:head>
    <h:body styleClass="bckg">
+       
         
         <center>
             <h1 style="width: 500px; height: 400px; color: window; font-size: 70px"> Albania Travel </h1>
             
             <h2>
-                <f:view >
+               
                     
                 <h:form>
                     
@@ -31,12 +33,12 @@
                        <h:commandButton value="Places" action="places" style="position: absolute; top: 250px; left: 900px; width: 180px; height: 40px; opacity: 0.8; background-color: window" />
                         <h:commandButton value="About" action="about" style="position: absolute; top: 250px; left: 1200px; width: 180px; height: 40px; opacity: 0.8; background-color: window" />
                         
-                        <h:selectOneMenu  value="#{tgbean.tag}" style="position: absolute; top: 500px; left: 310px; width: 150px; height: 40px">
+                        <h:selectOneMenu  value="#{tgbean.currentselected}" style="position: absolute; top: 500px; left: 310px; width: 150px; height: 40px">
                             <f:selectItems value="#{manager.tags()}" var="manager" itemValue="#{manager.tg}" itemLabel="#{manager.tg}"/>
                             </h:selectOneMenu>
                         
-                        <h:commandButton value="Add" action="#{tgbean.addtoList(s)}" style="position: absolute; top: 760px; left: 310px">
-                       <!--   <f:param name="tag" value="#{tgbean.tag}"> </f:param> -->
+                        <h:commandButton value="Add" action="#{tgbean.addtoList()}" style="position: absolute; top: 760px; left: 310px">
+                           
                         </h:commandButton>
                         
                         <h:commandButton value="Delete All" action="#{tgbean.delAll()}" style="position: absolute; top: 760px; left: 380px">
@@ -44,12 +46,20 @@
                         
                        
                     
-                   <!--   -->  <h:dataTable value="#{tgbean.toaddT()}" var="list" border="1" cellpadding="2" cellspacing="2" style="position: absolute; top: 500px; left: 610px">
+                   <!--    <h:dataTable value="#{tgbean.toaddT()}" var="list" border="1" cellpadding="2" cellspacing="2" style="position: absolute; top: 500px; left: 610px">
                         <h:column>
                              <f:facet name="header"> #</f:facet>
-                             <h:outputLabel value="#{tgbean.getTag()}"></h:outputLabel>
+                             <h:outputText value="#{list.tag}"></h:outputText>
                         </h:column>
-                </h:dataTable>
+                </h:dataTable> --> 
+                        
+                        <h:commandButton value="Display" action="selectag"/>
+                        
+                        <ol style="position: absolute; top: 500px; left: 60px">
+                            <ui:repeat var="currentselected" value="#{tgbean.stg}">
+                                <li>#{currentselected}</li>
+                            </ui:repeat>
+                        </ol>
                     
                 
                 <h:panelGrid columns="2" cellpadding="5" style="position: absolute; top: 340px; left: 580px">
@@ -66,7 +76,7 @@
                    
                 </h:form>
                     
-                    </f:view>
+                  
                 
             </h2>
             

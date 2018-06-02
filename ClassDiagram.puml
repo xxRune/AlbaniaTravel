@@ -1,0 +1,67 @@
+@startuml
+annotation javax.annotation.PostConstruct
+annotation javax.faces.bean.ApplicationScoped
+annotation javax.faces.bean.ManagedBean
+annotation javax.faces.bean.ManagedProperty
+annotation javax.faces.bean.SessionScoped
+class Beans.Manager
+class Beans.SearchController
+class Beans.SearchService
+class Beans.Tags
+class Connections.Connect
+class Connections.Connector
+class java.sql.Connection
+class java.sql.DriverManager
+class java.sql.PreparedStatement
+class java.sql.ResultSet
+class java.sql.SQLException
+class java.sql.Statement
+class java.util.ArrayList
+class java.util.HashSet
+class java.util.List
+class java.util.Set
+class java.util.logging.Level
+class java.util.logging.Logger
+interface java.io.Serializable
+Beans.Manager ..> javax.annotation.PostConstruct
+Beans.Manager ..> javax.faces.bean.ManagedBean
+Beans.Manager ..> javax.faces.bean.SessionScoped
+Beans.Manager ..> Connections.Connect
+Beans.Manager ..> Connections.Connector
+Beans.Manager ..> java.sql.Connection
+Beans.Manager ..> java.sql.DriverManager
+Beans.Manager ..> java.sql.PreparedStatement
+Beans.Manager ..> java.sql.ResultSet
+Beans.Manager ..> java.sql.SQLException
+Beans.Manager ..> java.sql.Statement
+Beans.Manager ..> java.util.ArrayList
+Beans.Manager ..> java.util.List
+Beans.Manager ..> java.util.logging.Level
+Beans.Manager ..> java.util.logging.Logger
+Beans.SearchController ..> javax.faces.bean.ManagedBean
+Beans.SearchController ..> javax.faces.bean.ManagedProperty
+Beans.SearchController ..> javax.faces.bean.SessionScoped
+Beans.SearchController ..> java.util.List
+Beans.SearchService ..> javax.annotation.PostConstruct
+Beans.SearchService ..> javax.faces.bean.ApplicationScoped
+Beans.SearchService ..> javax.faces.bean.ManagedBean
+Beans.SearchService ..> java.util.List
+Beans.SearchService ..> java.util.logging.Level
+Beans.SearchService ..> java.util.logging.Logger
+Beans.Tags ..> javax.faces.bean.ManagedBean
+Beans.Tags ..> java.util.ArrayList
+Beans.Tags ..> java.util.HashSet
+Beans.Tags ..> java.util.List
+Beans.Tags ..> java.util.Set
+Beans.Tags --|> java.io.Serializable
+Connections.Connect ..> java.sql.Connection
+Connections.Connect ..> java.sql.PreparedStatement
+Connections.Connect ..> java.sql.ResultSet
+Connections.Connector ..> java.sql.Connection
+Connections.Connector ..> java.sql.DriverManager
+Connections.Connector ..> java.sql.PreparedStatement
+Connections.Connector ..> java.sql.ResultSet
+Connections.Connector ..> java.sql.SQLException
+Connections.Connector ..> java.util.logging.Level
+Connections.Connector ..> java.util.logging.Logger
+@enduml

@@ -15,7 +15,11 @@ public class Tags implements Serializable{
     
     private String tag;
     private String[] cat; 
-    static List<String> stg = new ArrayList<>();
+
+   
+    
+    private static String currentselected;
+    private static List<String> stg = new ArrayList<>();
     
     public Tags(){
         
@@ -42,7 +46,7 @@ public class Tags implements Serializable{
     /**
      * @return the stg
      */
-    public static List<String> getStg() {
+    public  List<String> getStg() {
         return stg;
     }
 
@@ -63,28 +67,60 @@ public class Tags implements Serializable{
     /**
      * @param stg the stg to set
      */
-    public static void setStg(List<String> aStg) {
+    /*
+    public  void setStg(List<String> aStg) {
         stg = aStg;
+    } */
+    
+     public String getCurrentselected() {
+        return currentselected;
+    }
+
+    public void setCurrentselected(String currentselected) {
+        this.currentselected = currentselected;
+    }
+
+    
+    public List<String> display(){
+        return stg;
     }
     
-    public String addtoList(String s){
-        stg.add(s);
+    public void addtoList(){
+        
+        System.out.println("Something"+stg);
+        
+        this.stg.add(currentselected);
+        
+        //stg.add(s);
         
         //to remove duplicates
-        Set<String> hs = new HashSet<>();
-        hs.addAll(stg);
-        stg.clear();
-        stg.addAll(hs);
+       // Set<String> hs = new HashSet<>();
+       // hs.addAll(stg);
+       // stg.clear();
+       // stg.addAll(hs);
         
-        return "/tags.xhtml";
+       // return "/tags.xhtml";
+       
+       //return stg;
     }
     
-    public List<String> toaddT(){
-            List<String> td = new ArrayList<String>();
-            td.addAll(stg);
+      public List<Tags> toaddT(){
+            List<Tags> td = new ArrayList<Tags>();
+            //td.addAll(stg);
+            
+            for(int i=0;i==stg.size()-1;i++){
+                   Tags t= new Tags();
+                   t.setCurrentselected(stg.get(i));
+                   td.add(t);
+            }
+         /*   
+        Tags t= new Tags();
+        t.setTag(stg.get(stg.size()-1));
+        stg.remove(stg.size()-1);
+        */
             return td;
         }
-    
+      
     public String delAll(){
         stg.clear();
         return "/tags.xhtml";
