@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Places</title>
         <link rel="stylesheet" href="resources/style.css" type="text/css" ></link>
@@ -16,6 +17,10 @@
         <center>
             <h1 style="width: 500px; height: 400px; color: window; font-size: 70px"> Albania Travel </h1>
             
+            <h1 style="width: 500px; height: 400px; color: window; font-size: 50px; position: absolute; top: 400px; left: 100px"> Cities </h1>
+            <h1 style="width: 500px; height: 400px; color: window; font-size: 50px; position: absolute; top: 400px; left: 500px"> Villages </h1>
+            <h1 style="width: 500px; height: 400px; color: window; font-size: 50px; position: absolute; top: 400px; left: 1000px"> Touristic Points </h1>
+            
             <h2>
                 <h:form>
                      <h:commandButton value="Home" action="index" style="position: absolute; top: 250px; left: 300px; width: 180px; height: 40px; opacity: 0.8; background-color: window" />
@@ -23,6 +28,14 @@
                        <h:commandButton value="Places" action="places" style="position: absolute; top: 250px; left: 900px; width: 180px; height: 40px; opacity: 0.8; background-color: window" />
                         <h:commandButton value="About" action="about" style="position: absolute; top: 250px; left: 1200px; width: 180px; height: 40px; opacity: 0.8; background-color: window" />
                      
+                        <h:selectOneMenu >
+                            <f:selectItems value="#{manager.city()}" var="manager" itemValue="#{manager.plc}" itemLabel="#{manager.plc}"/>
+                        </h:selectOneMenu>
+                        
+                        <h:selectOneMenu >
+                            <f:selectItems value="#{manager.village()}" var="manager" itemValue="#{manager.plc}" itemLabel="#{manager.plc}"/>
+                        </h:selectOneMenu>
+                        
                 </h:form>
   
             </h2>

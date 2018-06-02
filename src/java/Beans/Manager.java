@@ -1,7 +1,6 @@
 
 package Beans;
 
-import Connections.Connect;
 import Connections.Connector;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -29,44 +27,27 @@ public class Manager {
   
     private String tg;
     private String catg;
-
-   
+    private String plc;
     
-    List<String> selectedt = new ArrayList<>();
-    private static List<String> procc = new ArrayList<String>();
- 
-    public Manager(String tg){
-        this.tg=tg;
+
+    public Manager(String tg, String catg, String plc) {
+        this.tg = tg;
+        this.catg = catg;
+        this.plc = plc;
     }
    
     public Manager() { 
     }
     
-   /*
-    @PostConstruct
-    public void init(){
-        selectedt= new ArrayList<>();
-    }
-    */
 
-    public static void addProcc(String s){
-        procc.add(s);
+    public String getPlc() {
+        return plc;
+    }
+
+    public void setPlc(String plc) {
+        this.plc = plc;
     }
     
-    /**
-     * @return the procc
-     */
-    public static List<String> getProcc() {
-        return procc;
-    }
-
-    /**
-     * @param aProcc the procc to set
-     */
-    public static void setProcc(List<String> aProcc) {
-        procc = aProcc;
-    }
-   
 
     /**
      * @return the tg
@@ -96,18 +77,7 @@ public class Manager {
         this.catg = catg;
     }
     
-     public List<String> getSelectedt() {
-        return selectedt;
-    }
-    
-     public void setSelectedt(List<String> selectedt) {
-        this.selectedt = selectedt;
-    }
-     
-     public void addseltoList(String tag){
-         selectedt.add(tag);
-     }
-    
+ 
     
     public List<Manager> tags() throws ClassNotFoundException{
         
@@ -138,6 +108,58 @@ public class Manager {
         return arr;
     }
     
+    
+    public List<Manager> city() throws ClassNotFoundException{
+        
+        List<Manager> arr = new ArrayList<>();
+        //str="select name from places where category like city";
+        str="select name from places where category like 'city'";
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AlbaniaTravel","root","");
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(str);
+            
+            while(rs.next()){
+                Manager mg = new Manager();
+                mg.setPlc(rs.getString("name"));
+                arr.add(mg);
+            }
+        } catch (SQLException e) {
+            System.err.println("Something went wrong here"+e);
+        }
+        finally{
+            cn.closeAll(conn, pstmt, rs);
+        }
+        return arr;
+    } 
+    
+     public List<Manager> village() throws ClassNotFoundException{
+        
+        List<Manager> arr = new ArrayList<>();
+        //str="select name from places where category city";
+        str="select name from places where category like 'village'";
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AlbaniaTravel","root","");
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(str);
+            
+            while(rs.next()){
+                Manager mg = new Manager();
+                mg.setPlc(rs.getString("name"));
+                arr.add(mg);
+            }
+        } catch (SQLException e) {
+            System.err.println("Something went wrong here"+e);
+        }
+        finally{
+            cn.closeAll(conn, pstmt, rs);
+        }
+        return arr;
+    } 
          
     
         public void addTgs() throws ClassNotFoundException{
@@ -192,11 +214,6 @@ public class Manager {
             }
             return ar;
         }
-    
-        public List<String> toaddT(){
-            List<String> td = new ArrayList<String>();
-            td.addAll(procc);
-            return td;
-        }
-        
+
+     
 }

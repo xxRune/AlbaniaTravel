@@ -19,7 +19,7 @@ public class Tags implements Serializable{
    
     
     private static String currentselected;
-    private static List<String> stg = new ArrayList<>();
+    private static Set<String> stg = new HashSet<>();
     
     public Tags(){
         
@@ -46,7 +46,7 @@ public class Tags implements Serializable{
     /**
      * @return the stg
      */
-    public  List<String> getStg() {
+    public  Set<String> getStg() {
         return stg;
     }
 
@@ -81,7 +81,7 @@ public class Tags implements Serializable{
     }
 
     
-    public List<String> display(){
+    public Set<String> display(){
         return stg;
     }
     
@@ -91,35 +91,27 @@ public class Tags implements Serializable{
         
         this.stg.add(currentselected);
         
-        //stg.add(s);
-        
-        //to remove duplicates
-       // Set<String> hs = new HashSet<>();
-       // hs.addAll(stg);
-       // stg.clear();
-       // stg.addAll(hs);
-        
-       // return "/tags.xhtml";
        
-       //return stg;
     }
     
-      public List<Tags> toaddT(){
-            List<Tags> td = new ArrayList<Tags>();
+     /*
+      public Set<Tags> toaddT(){
+            Set<Tags> td = new HashSet<Tags>();
             //td.addAll(stg);
             
             for(int i=0;i==stg.size()-1;i++){
                    Tags t= new Tags();
-                   t.setCurrentselected(stg.get(i));
+                 //  t.setCurrentselected(stg.);
                    td.add(t);
             }
-         /*   
+    
         Tags t= new Tags();
         t.setTag(stg.get(stg.size()-1));
         stg.remove(stg.size()-1);
-        */
+        
             return td;
-        }
+        }   */
+    
       
     public String delAll(){
         stg.clear();
