@@ -10,11 +10,11 @@
         <center>
         <f:view>
             <h:form>
-                <h:dataTable value="#{tgbean.stg}" cellpadding="2" cellspacing="2" border="1" var="lust">
+                <h:dataTable value="#{tgbean.toaddT()}" cellpadding="2" cellspacing="2" border="1" var="lust">
                     
                     <h:column>
                         <f:facet name="header"> #</f:facet>
-                        <h:outputLabel value="#{lust}" ></h:outputLabel>
+                        <h:outputLabel value="#{lust.currentselected}" ></h:outputLabel>
                     </h:column>
                     
                 </h:dataTable>
