@@ -113,7 +113,7 @@ public class Manager {
         
         List<Manager> arr = new ArrayList<>();
         //str="select name from places where category like city";
-        str="select name from places where category like 'city'";
+        str="SELECT * FROM places WHERE category = 'city'";
         
         try {
             Class.forName("com.mysql.jdbc.Driver");

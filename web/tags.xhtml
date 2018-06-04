@@ -16,9 +16,9 @@
         </style>
         
     </h:head>
-   <h:body styleClass="bckg">
+    <h:body styleClass="bckg" style="background-size: auto">
        
-                        WE
+                       
         <center>
             <h1 style="width: 500px; height: 400px; color: window; font-size: 70px"> Albania Travel </h1>
             
@@ -49,9 +49,11 @@
                         
                         
                         <ol style="position: absolute; top: 500px; left: 680px;">
+                            <li>
                             <ui:repeat var="currentselected" value="#{tgbean.stg}">
                                 <li>#{currentselected}</li>
                             </ui:repeat>
+                               </li>
                         </ol>
                     
                 
