@@ -28,12 +28,16 @@
                        <h:commandButton value="Places" action="places" style="position: absolute; top: 250px; left: 900px; width: 180px; height: 40px; opacity: 0.8; background-color: window" />
                         <h:commandButton value="About" action="about" style="position: absolute; top: 250px; left: 1200px; width: 180px; height: 40px; opacity: 0.8; background-color: window" />
                      
-                        <h:selectOneMenu style="position: relative; top: 60px; left: -450px" >
+                        <h:selectOneMenu style="position: relative; top: 60px; left: -23%" >
                             <f:selectItems value="#{manager.city()}" var="manager" itemValue="#{manager.plc}" itemLabel="#{manager.plc}"/>
                         </h:selectOneMenu>
                         
-                        <h:selectOneMenu style="position: relative; top: 60px; left:-100px" >
+                        <h:selectOneMenu style="position: relative; top: 60px; left: -4%" >
                             <f:selectItems value="#{manager.village()}" var="manager" itemValue="#{manager.plc}" itemLabel="#{manager.plc}"/>
+                        </h:selectOneMenu>
+                        
+                         <h:selectOneMenu style="position: relative; top: 60px; left: 15%" >
+                             <f:selectItems value="#{manager.touristicpoint()}" var="manager" itemValue="#{manager.plc}" itemLabel="#{manager.plc}"/>
                         </h:selectOneMenu>
                         
                 </h:form>

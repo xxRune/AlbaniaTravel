@@ -2,6 +2,11 @@
 package Beans;
 
 import Connections.Connector;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import static javax.imageio.ImageIO.read;
 
 @ManagedBean(name="manager")
 @SessionScoped
@@ -77,7 +84,23 @@ public class Manager {
         this.catg = catg;
     }
     
- 
+    
+    public StringBuilder desc() throws FileNotFoundException, IOException{
+        
+        
+        FileReader fr = new FileReader("decs.txt");
+        System.out.println("this is fr "+fr);
+        
+            //Scanner read = new Scanner(new File("resources\\decs.txt"));
+          
+            StringBuilder stb = new StringBuilder();
+            stb.append(fr.toString());
+            
+              System.out.println("This is it: "+stb.toString());
+            
+           
+           return stb;
+    }
     
     public List<Manager> tags() throws ClassNotFoundException{
         
@@ -140,6 +163,33 @@ public class Manager {
         List<Manager> arr = new ArrayList<>();
         //str="select name from places where category city";
         str="select name from places where category like 'village'";
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AlbaniaTravel","root","");
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(str);
+            
+            while(rs.next()){
+                Manager mg = new Manager();
+                mg.setPlc(rs.getString("name"));
+                arr.add(mg);
+            }
+        } catch (SQLException e) {
+            System.err.println("Something went wrong here"+e);
+        }
+        finally{
+            cn.closeAll(conn, pstmt, rs);
+        }
+        return arr;
+    } 
+     
+     
+    public List<Manager> touristicpoint() throws ClassNotFoundException{
+        
+        List<Manager> arr = new ArrayList<>();
+        
+        str="SELECT * FROM places WHERE category = 'point'";
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
