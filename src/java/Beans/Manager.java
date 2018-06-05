@@ -3,10 +3,7 @@ package Beans;
 
 import Connections.Connector;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,13 +11,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import static javax.imageio.ImageIO.read;
 
 @ManagedBean(name="manager")
 @SessionScoped
@@ -35,7 +31,11 @@ public class Manager {
     private String tg;
     private String catg;
     private String plc;
+
+   
     
+    private String username;
+    private String password;
 
     public Manager(String tg, String catg, String plc) {
         this.tg = tg;
@@ -46,6 +46,21 @@ public class Manager {
     public Manager() { 
     }
     
+     public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getPlc() {
         return plc;
@@ -85,21 +100,69 @@ public class Manager {
     }
     
     
-    public StringBuilder desc() throws FileNotFoundException, IOException{
-        
-        
-        FileReader fr = new FileReader("decs.txt");
-        System.out.println("this is fr "+fr);
-        
-            //Scanner read = new Scanner(new File("resources\\decs.txt"));
-          
-            StringBuilder stb = new StringBuilder();
-            stb.append(fr.toString());
+    public String trialLogin() throws ClassNotFoundException{
+        str="Select username, pass from usr where username = '"+this.username+"' and pass = '"+this.password+"'";
+        //str="SELECT * FROM usr WHERE username LIKE '"+this.username+"' AND pass LIKE '"+this.password+"'";
+        String uId=null;
+        String uP=null;
+        int sts=-1;
+       
+        try {
+             Class.forName("com.mysql.jdbc.Driver");
+             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AlbaniaTravel","root","");
+            pstmt=conn.prepareStatement(str);
+            pstmt.setString(1, this.username);
+            pstmt.setString(2, this.password);
+            rs=pstmt.executeQuery(str);
+            if(rs.next()){
+                return "admin.xhtml";
+            }
+             
+             /*
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery(str);
+             rs.next();
+             uId=rs.getString("username");
+             uP=rs.getString("pass");
+             */
             
-              System.out.println("This is it: "+stb.toString());
-            
-           
-           return stb;
+        } catch (SQLException e) {
+            System.err.println("Whoops smth went wrong "+e);
+            return "login.xhml";
+        }
+        finally{
+            Connector.closeAll(conn, pstmt, rs);
+        }
+        System.out.println("aftet finally block "+uId+" "+uP+" Now from input "+this.username+" "+this.password);
+        /**/
+        return "admin.xhtml";
+        
+    }
+    
+    
+    
+    public String desc() throws ClassNotFoundException{
+        
+        str="select de from descri";
+        String des=null;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AlbaniaTravel","root","");
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery(str);
+             while(rs.next()){
+                 des=rs.getString("de");
+                 System.out.println("this is des "+des);
+             }
+        } catch (SQLException ex) {
+            System.err.println("Problme with dbc "+ex);
+        }
+        finally{
+            Connector.closeAll(conn, pstmt, rs);
+        }
+        System.out.println("this is des "+des);
+        return des;
     }
     
     public List<Manager> tags() throws ClassNotFoundException{
