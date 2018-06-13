@@ -2,11 +2,10 @@
 package Beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.behavior.AjaxBehavior;
 
 @ManagedBean(name="tgbean")
 public class Tags implements Serializable{
@@ -116,6 +115,11 @@ public class Tags implements Serializable{
     public String delAll(){
         stg.clear();
         return "/tags.xhtml";
+    }
+    
+    
+    public void listener(AjaxBehavior event){
+        addtoList();
     }
     
 }
