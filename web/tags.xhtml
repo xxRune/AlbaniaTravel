@@ -49,17 +49,18 @@
                         
                         
                         <ol style="position: absolute; top: 500px; left: 680px;">
-                            <li>
+                            
                             <ui:repeat var="currentselected" value="#{tgbean.stg}">
                                 <li>#{currentselected}</li>
                             </ui:repeat>
-                               </li>
+                               
                         </ol>
                     
                 
                 <h:panelGrid columns="2" cellpadding="5" style="position: absolute; top: 340px; left: 580px">
                     <p:outputLabel value="Search" for="searchName"></p:outputLabel>
                     <p:autoComplete id="searchName" value="#{searchController.searchName}" completeMethod="#{searchController.completeText}"/>
+                    
                 </h:panelGrid>
                 
                 
