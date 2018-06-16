@@ -31,10 +31,10 @@ public class SessionFilter implements Filter {
         String currentPath=req1.getRequestURL().toString();
         
         if(sessionUser !=null && sessionRole.equals("1")){
-            if(currentPath.contains("AlbaniaTravel/index.jsf")){
+            if(currentPath.contains("AlbaniaTravel/login.jsf")){
                 res1.sendRedirect(req1.getContextPath()+"/admin/admin.jsf");
             }else if(currentPath.contains("user")){
-                res1.sendRedirect(req1.getContextPath()+"/index.jsf");
+                res1.sendRedirect(req1.getContextPath()+"/admin/admin.jsf");
             }else{
                 chain.doFilter(request, response);
             }
