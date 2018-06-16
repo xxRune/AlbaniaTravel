@@ -3,46 +3,37 @@ package Connections;
 
 
 
+import Logger.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Connector {
     
-    private static final String URL = "jdbc:mysql://localhost:3306/albaniatravel";
-    private static final String UID = "root";
-    private static final String UPassword = "";
     
-    private Connection c;
+    public static Connection conn=null;
+    public static PreparedStatement pstmt=null;
+    public static ResultSet rs=null;
+    private String str="";
     
-    public void getConnected() throws ClassNotFoundException{
+    public static Connection getConnection(){
+        
         try {
-            Class.forName("com.mysql.jdbc.Driver"); 
-            setConnection(DriverManager.getConnection(URL,UID,UPassword));
-        } catch (SQLException ex) {
-            System.err.println("An Error ocured during DB connect: "+ ex);
-           Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AlbaniaTravel","root","");
+            System.out.println("the connection is OK");
+                  
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("Exception Occured with DB Connection :" + ex);
         }
+        return conn;
     }
-
-    
-    public Connection getConnection() throws ClassNotFoundException {
-       if(c == null) 
-           getConnected();
-       
-       
-        return c;
-    }
-
-    
-    public void setConnection(Connection c) {
-        this.c = c;
-    }
-    
+                
     public static void closeAll(Connection conn, PreparedStatement pstmt, ResultSet rs){
         
         if(conn != null){
@@ -72,6 +63,39 @@ public class Connector {
             }
         }
                 
+    }
+   
+    
+     public User findUser(String username,String password) throws ClassNotFoundException{
+        
+       
+        str = "select username,password,role,name,surname from usr where username='"+username+"' and password='"+password+"'";
+        try {
+            
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AlbaniaTravel","root","");
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(str);
+            while(rs.next()){
+                String name=rs.getString("name");
+                String surname=rs.getString("surname");
+                int s_role=rs.getInt("role"); 
+                return new User(name,surname,s_role);
+            }  
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Exception Occured in the process :" + ex);
+        }
+        finally{
+            closeAll(conn, pstmt, rs);
+            System.out.println("Finally block closed the connection OK from getAllMembers");
+        }
+        
+   
+        return null;
+
     }
 
 }

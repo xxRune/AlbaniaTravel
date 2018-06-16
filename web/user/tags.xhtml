@@ -44,17 +44,13 @@
                         <h:commandButton value="Delete All" action="#{tgbean.delAll()}" style="position: absolute; top: 760px; left: 380px">
                             </h:commandButton>
                         
-                       
-                
-                        
-                        
-                        <ol style="position: absolute; top: 500px; left: 680px;">
+                    
                             
                             <ui:repeat var="currentselected" value="#{tgbean.stg}">
                                 <li>#{currentselected}</li>
                             </ui:repeat>
                                
-                        </ol>
+                      
                     
                 
                 <h:panelGrid columns="2" cellpadding="5" style="position: absolute; top: 340px; left: 580px">
