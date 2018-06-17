@@ -41,7 +41,7 @@ public class Controller {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Username or Password is invalid"));
         }
         
-        return "index.xhtml";
+        return "login.xhtml";
     }
     
     
@@ -49,7 +49,7 @@ public class Controller {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("username");
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         sessionUser=null;
-        return "index.xhtml?faces-redirect=true";
+        return "login.xhtml?faces-redirect=true";
     }
     
       public String redirect(int role){
