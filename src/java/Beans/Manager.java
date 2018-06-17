@@ -102,7 +102,7 @@ public class Manager {
     
     public String trialLogin() throws ClassNotFoundException{
         str="Select username, pass from usr where username = '"+this.username+"' and pass = '"+this.password+"'";
-        //str="SELECT * FROM usr WHERE username LIKE '"+this.username+"' AND pass LIKE '"+this.password+"'";
+      
         String uId=null;
         String uP=null;
         int sts=-1;
@@ -117,14 +117,6 @@ public class Manager {
             if(rs.next()){
                 return "admin.xhtml";
             }
-             
-             /*
-             Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery(str);
-             rs.next();
-             uId=rs.getString("username");
-             uP=rs.getString("pass");
-             */
             
         } catch (SQLException e) {
             System.err.println("Whoops smth went wrong "+e);
@@ -198,7 +190,7 @@ public class Manager {
     public List<Manager> city() throws ClassNotFoundException{
         
         List<Manager> arr = new ArrayList<>();
-        //str="select name from places where category like city";
+      
         str="SELECT * FROM places WHERE category = 'city'";
         
         try {
@@ -224,7 +216,7 @@ public class Manager {
      public List<Manager> village() throws ClassNotFoundException{
         
         List<Manager> arr = new ArrayList<>();
-        //str="select name from places where category city";
+        
         str="select name from places where category like 'village'";
         
         try {
@@ -327,6 +319,5 @@ public class Manager {
             }
             return ar;
         }
-
      
 }

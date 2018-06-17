@@ -46,7 +46,7 @@
                         
                     
                             
-                            <ui:repeat var="currentselected" value="#{tgbean.stg}">
+                        <ui:repeat var="currentselected" value="#{tgbean.stg}">
                                 <li>#{currentselected}</li>
                             </ui:repeat>
                                
@@ -55,16 +55,20 @@
                 
                 <h:panelGrid columns="2" cellpadding="5" style="position: absolute; top: 340px; left: 580px">
                     <p:outputLabel value="Search" for="searchName"></p:outputLabel>
-                    <p:autoComplete id="searchName" value="#{searchController.searchName}" completeMethod="#{searchController.completeText}"/>
+                   
+                    <p:autoComplete id="searchName" value="#{searchController.searchName}" completeMethod="#{searchController.completeText}" forceSelection="true"
+                                    onkeypress="if (event.keyCode === 13)">
+                    </p:autoComplete>
                     
                 </h:panelGrid>
                 
                 
-                <h:selectManyCheckbox value="#{tgbean.cat}" style="position: absolute; top: 550px; left: 1060px" layout="pageDirection">
+                        <h:selectManyCheckbox value="#{tgbean.cat}" style="position: absolute; top: 550px; left: 1060px" layout="pageDirection">
                     <f:selectItems value="#{manager.checkcat()}" />
                 </h:selectManyCheckbox>
                 
                 
+                        <h:commandButton value="Process" action="results" ></h:commandButton>
                    
                 </h:form>
                     
