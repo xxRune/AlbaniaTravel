@@ -99,37 +99,7 @@ public class Manager {
         this.catg = catg;
     }
     
-    
-    public String trialLogin() throws ClassNotFoundException{
-        str="Select username, pass from usr where username = '"+this.username+"' and pass = '"+this.password+"'";
-      
-        String uId=null;
-        String uP=null;
-        int sts=-1;
-       
-        try {
-             Class.forName("com.mysql.jdbc.Driver");
-             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AlbaniaTravel","root","");
-            pstmt=conn.prepareStatement(str);
-            pstmt.setString(1, this.username);
-            pstmt.setString(2, this.password);
-            rs=pstmt.executeQuery(str);
-            if(rs.next()){
-                return "admin.xhtml";
-            }
-            
-        } catch (SQLException e) {
-            System.err.println("Whoops smth went wrong "+e);
-            return "login.xhml";
-        }
-        finally{
-            Connector.closeAll(conn, pstmt, rs);
-        }
-        System.out.println("aftet finally block "+uId+" "+uP+" Now from input "+this.username+" "+this.password);
-        /**/
-        return "admin.xhtml";
-        
-    }
+ 
     
     
     

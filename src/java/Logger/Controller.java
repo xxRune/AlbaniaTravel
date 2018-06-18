@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class Controller {
     
+    private static final long s = 10000000000L;
+    
     private String username;
     private String password;
     private String role;
