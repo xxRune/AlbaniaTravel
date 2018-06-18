@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jun 02, 2018 at 12:32 PM
--- Server version: 5.7.19
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Generation Time: Jun 18, 2018 at 10:11 AM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,12 +28,10 @@ SET time_zone = "+00:00";
 -- Table structure for table `categ`
 --
 
-DROP TABLE IF EXISTS `categ`;
-CREATE TABLE IF NOT EXISTS `categ` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+CREATE TABLE `categ` (
+  `id` int(5) NOT NULL,
+  `name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categ`
@@ -42,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `categ` (
 INSERT INTO `categ` (`id`, `name`) VALUES
 (1, 'City'),
 (2, 'Village'),
-(3, 'Tourist Point');
+(3, 'Touristic Point');
 
 -- --------------------------------------------------------
 
@@ -50,26 +48,24 @@ INSERT INTO `categ` (`id`, `name`) VALUES
 -- Table structure for table `places`
 --
 
-DROP TABLE IF EXISTS `places`;
-CREATE TABLE IF NOT EXISTS `places` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `places` (
+  `id` int(5) NOT NULL,
   `category` varchar(20) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `places`
 --
 
 INSERT INTO `places` (`id`, `category`, `name`) VALUES
-(1, 'city', 'Tirane'),
-(2, 'city', 'Durres'),
-(3, 'village', 'Valbona Valley'),
-(4, 'village', 'Voskopoj'),
-(5, 'point', 'Albanian Riviera'),
-(6, 'point', 'Apollonia'),
-(7, 'city', 'Sarande');
+(1, 'City', 'Tirane'),
+(2, 'City', 'Durres'),
+(3, 'Village', 'Valbona Valley'),
+(4, 'Village', 'Voskopoj'),
+(5, 'Touristic Point', 'Albanian Riviera'),
+(6, 'Touristic Point', 'Apollonia'),
+(7, 'City', 'Sarande');
 
 -- --------------------------------------------------------
 
@@ -77,12 +73,10 @@ INSERT INTO `places` (`id`, `category`, `name`) VALUES
 -- Table structure for table `tgs`
 --
 
-DROP TABLE IF EXISTS `tgs`;
-CREATE TABLE IF NOT EXISTS `tgs` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+CREATE TABLE `tgs` (
+  `id` int(5) NOT NULL,
+  `name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tgs`
@@ -90,9 +84,8 @@ CREATE TABLE IF NOT EXISTS `tgs` (
 
 INSERT INTO `tgs` (`id`, `name`) VALUES
 (1, 'Beach'),
-(2, 'City'),
-(3, 'Village'),
-(4, 'Club');
+(4, 'Club'),
+(5, 'Historical');
 
 -- --------------------------------------------------------
 
@@ -100,14 +93,68 @@ INSERT INTO `tgs` (`id`, `name`) VALUES
 -- Table structure for table `usr`
 --
 
-DROP TABLE IF EXISTS `usr`;
-CREATE TABLE IF NOT EXISTS `usr` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usr` (
+  `id` int(5) NOT NULL,
   `username` varchar(20) NOT NULL,
   `pass` varchar(20) NOT NULL,
-  `up` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `up` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categ`
+--
+ALTER TABLE `categ`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `places`
+--
+ALTER TABLE `places`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tgs`
+--
+ALTER TABLE `tgs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `usr`
+--
+ALTER TABLE `usr`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categ`
+--
+ALTER TABLE `categ`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `places`
+--
+ALTER TABLE `places`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tgs`
+--
+ALTER TABLE `tgs`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `usr`
+--
+ALTER TABLE `usr`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
