@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -56,9 +58,10 @@ public class Traveller {
     
     
     
-    public List<Traveller> process() throws ClassNotFoundException{
+    public Set<Traveller> process() throws ClassNotFoundException{
         
-          List<Traveller> res = new ArrayList<Traveller>();
+          Set<Traveller> res = new HashSet<>();
+          res.clear();
         Manager mg = new Manager();
         Tags tg = new Tags();
         t.addAll(tg.getStg());
@@ -69,12 +72,16 @@ public class Traveller {
         for(int i=0;i<c.size();i++){
             for(int j=0;i<t.size();i++){
                 String category=c.get(i);
-                String tag=t.get(j);
+                String tag=t.get(i);
                 
                 System.out.println("Inside loop i "+i);
-                System.out.println("Inside loop j "+j);
+               System.out.println("Inside loop j "+j);
                 
-                str="SELECT places.name FROM places WHERE categ.name FROM categ LIKE '"+category+"' AND tgs.name FROM tgs LIKE '"+tag+"'";
+                 str="SELECT p.name FROM places as p \n" +
+"LEFT JOIN categ as c on p.name = c.name\n" +
+"LEFT JOIN tgs as t on p.id = t.id_fk\n" +
+"WHERE p.category ='"+category+"'\n" +
+"AND t.name = '"+tag+"'";
                 
                 try {
              Class.forName("com.mysql.jdbc.Driver");
@@ -99,6 +106,12 @@ public class Traveller {
                 
             }
         }
+        
+      for(int k=0;k<res.size();k++){
+            Set<String> st = new HashSet<>();
+           
+      }
+        
     return res;
     }
 }
